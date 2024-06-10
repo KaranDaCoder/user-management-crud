@@ -5,12 +5,11 @@ import User from "@/models/User";
 
 // Get all users - for admin only!
 export const GET = async(request, {params}) => {
+ await connectDb();
+ const session = await auth();
  try {
-  await connectDb();
-  const session = await auth();
   if(!session) return new NextResponse(JSON.stringify({error: `Session Not Found!`}), {status:500});
   const {user:{_id, isAdmin}} = await auth();
-  // console.log(_id)
   const isUserAdmin = await User.findById(_id);
   if(!isUserAdmin.isAdmin) return new NextResponse(JSON.stringify({message: `Only admin can view all members`}, {status:401}))
   const all_users = await User.find({}).sort({createdAt: 1});
