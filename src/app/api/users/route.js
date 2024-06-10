@@ -4,7 +4,7 @@ import User from "@/models/User";
 import { NextResponse } from "next/server";
 
 export const GET = async(request, {params}) => {
- // const session = await auth();
+ const session = await auth();
  try {
   await connectDb();
   const all_users = await User.find({});
