@@ -8,9 +8,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     Google({
       clientId: process.env.AUTH_GOOGLE_ID,
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
+      // authorization: {
+      //   params: {
+      //     prompt: 'consent',
+      //     access_type: 'offline',
+      //     response_type: 'code',
+      //   },
+      // }
     }),
   ],
   callbacks: {
+    jwt({ token, user }) {
+      if (user) {
+        token._id = user.id;
+      }
+      console.log(`JWT TOKEN CREATED : ${JSON.stringify(token)}`);
+      return token;
+    },
     async session({ session }) {
       await connectDb();
       const currentSession = await User.findOne({
