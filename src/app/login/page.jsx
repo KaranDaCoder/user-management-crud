@@ -1,6 +1,6 @@
 import React from 'react'
 import GoogleSignIn from '../components/GoogleSignIn';
-import { auth } from '../../../auth';
+import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
 
 const Login = async () => {

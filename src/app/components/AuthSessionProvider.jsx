@@ -1,5 +1,6 @@
 import React from 'react'
-import { auth } from '../../../auth'
+import { auth } from '@/auth';
+
 
 const AuthSessionProvider = async({children}) => {
  const serverSession = await auth();

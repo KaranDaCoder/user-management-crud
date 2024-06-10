@@ -14,10 +14,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body className={`${inter.className} w-full min-h-dvh flex flex-col container mx-auto`}>
-        {/* <AuthSessionProvider>
-        </AuthSessionProvider> */}
+        <AuthSessionProvider>
           <Navbar />
           {children}
+        </AuthSessionProvider>
       </body>
     </html>
   );

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
-import { auth } from '../../../auth';
+import { auth } from '@/auth';
+
 import GoogleSignOut from './GoogleSignOut';
 
 const Navbar = async () => {

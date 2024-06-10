@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
-import { connectDb } from './src/lib/dbConnect';
-import User from './src/models/User';
+import { connectDb } from './lib/dbConnect';
+import User from './models/User';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -18,13 +18,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
-    jwt({ token, user }) {
-      if (user) {
-        token._id = user.id;
-      }
-      console.log(`JWT TOKEN CREATED : ${JSON.stringify(token)}`);
-      return token;
-    },
     async session({ session }) {
       await connectDb();
       const currentSession = await User.findOne({
