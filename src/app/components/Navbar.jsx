@@ -14,9 +14,9 @@ const Navbar = async () => {
       ) : (
         <div className='flex items-center justify-between w-3/4 h-full px-4 text-lg border shadow-lg rounded-xl'>
          <Link href={"/dashboard"}>Dashboard</Link>
-        <Link href={"/"} className=''>Manage Profile</Link>
-        {session?.user?.isAdmin && <p>Add User</p>}
-        {session?.user?.isAdmin && <p>Delete User</p>}
+        <Link href={"/"} className=''>My Profile</Link>
+        {session?.user?.isAdmin && <Link href={"/manage-users"}>Manage Users</Link>}
+        <Link href={"/manage-movies"}>Manage Movies</Link>
         <GoogleSignOut/>
         </div>
       )}
